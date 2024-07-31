@@ -14,10 +14,18 @@ class point:
 
 
 def f(x): # equation 
-    return 2 * x ** 3 - 5 * x ** 2 + 2 * x - 14
+    x /= 10
+    return (2 * x ** 3 - 5 * x ** 2 + 2 * x) * 10 
+    return x ** 2 * 10
+    return math.sin(x) * 10 
+    return x + 1
 
 def derivative(x): # d/dx of the equation
+    x /= 10
     return 6 * x ** 2 - 10 * x + 2
+    return 2 * x
+    return math.cos(x)
+    return 1
 
 def distance(point1, point2):
     return ((point1.x - point2.x) ** 2 + (point1.y - point2.y) ** 2) ** 0.5
@@ -34,6 +42,7 @@ screen.screensize(width,length)
 turtle.bgcolor('black')
 
 t = turtle.Turtle()
+t.speed(0)
 t.color('white')
 t.sety(length/2)
 t.setheading(270)
@@ -62,6 +71,9 @@ else:
 for x in range(int(point1.x + scale), int(length/2 - scale), scale):
     point1 = point(x,f(x))
     point2 = point(x + scale, f(x + scale))
-    angle = math.degrees(math.atan(derivative((point1.x+point2.x)/2))) # x or x between the 2 points ??
+    if not point1.inRange(): continue
+    angle = math.degrees(math.atan(derivative((point1.x+point2.x)/2)))
     t.setheading(angle) 
     t.forward(distance(point1, point2))
+
+wait = input("DONE!") 
