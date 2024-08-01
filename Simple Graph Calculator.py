@@ -36,8 +36,8 @@ def setCoordinates(x, y):
 width, length = 600, 600                    # graph size
 step = 1                                    # step between each point
 upscaleRatio = 15                           # upscales/downscales the graph while the window size is constant
-equationIsPostiveOrNegative = True          # pretty self expresive?
-signIndex = 1                               # this should be one and the code changes it when needed
+equationIsPostiveOrNegative = True          # True if the equation has a ± sign
+signIndex = 1                               # used in the equations, is equivilant to positive or negative
 
 screen = turtle.Screen()
 screen.screensize(width,length)
