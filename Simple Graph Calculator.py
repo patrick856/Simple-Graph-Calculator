@@ -14,18 +14,13 @@ class point:
 
 
 def f(x): # equation 
-    x /= 10
-    return (2 * x ** 3 - 5 * x ** 2 + 2 * x) * 10 
-    return x ** 2 * 10
-    return math.sin(x) * 10 
-    return x + 1
+    x /= upscaleRatio
+    equation = math.sin(x)
+    return round(equation * upscaleRatio, 2)
 
 def derivative(x): # d/dx of the equation
-    x /= 10
-    return 6 * x ** 2 - 10 * x + 2
-    return 2 * x
+    x /= upscaleRatio
     return math.cos(x)
-    return 1
 
 def distance(point1, point2):
     return ((point1.x - point2.x) ** 2 + (point1.y - point2.y) ** 2) ** 0.5
@@ -36,6 +31,8 @@ def setCoordinates(x, y):
     t.pendown()
 
 width, length = 600, 600
+scale = 1
+upscaleRatio = 20
 
 screen = turtle.Screen()
 screen.screensize(width,length)
@@ -53,7 +50,6 @@ t.setheading(0)
 t.forward(length)
 t.color('purple')
 
-scale = 1
 
 xstart = -length/2
 ystart = f(xstart)
@@ -68,7 +64,7 @@ else:
             setCoordinates(point1.x, point1.y)
             break
 
-for x in range(int(point1.x + scale), int(length/2 - scale), scale):
+for x in range(int(point1.x), int(length/2 - scale), scale):
     point1 = point(x,f(x))
     point2 = point(x + scale, f(x + scale))
     if not point1.inRange(): continue
